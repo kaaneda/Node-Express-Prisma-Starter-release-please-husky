@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  api:
+    container_name: kaa-api
+    build:
+      dockerfile: ./apps/soda/Dockerfile
+      context: .
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - "3010:3010"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - api_net
+      - database_net
+
+  database:
+    container_name: kaa-database
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      retries: 10
+    volumes:
+      - database_vol:/var/lib/postgresql/data/
+    networks:
+      - database_net
+
+volumes:
+  database_vol: {}
+
+networks:
+  api_net: {}
+  database_net: {}

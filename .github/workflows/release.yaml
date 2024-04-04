@@ -1,0 +1,27 @@
+name: changelog-release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "yarn"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Run Release Please
+        uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
