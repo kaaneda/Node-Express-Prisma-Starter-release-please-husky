@@ -1,0 +1,5 @@
+prisma/**
+
+dist
+
+pnpm-lock.yaml

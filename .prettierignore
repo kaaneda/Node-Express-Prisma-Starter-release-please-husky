@@ -1,0 +1,12 @@
+# dependencies
+node_modules
+
+#dev file
+
+.temp
+
+# production
+.next
+dist
+
+*.hbs

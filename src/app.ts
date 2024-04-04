@@ -1,13 +1,13 @@
-import express from "express";
-import exemple from "./routes/exemple";
-import cors from "cors";
+import express from 'express';
+import exemple from './routes/exemple';
+import cors from 'cors';
 
 const app = express();
 
 app.use(
   cors(),
   express.json({
-    limit: "64mb",
+    limit: '64mb',
   }),
 );
 
@@ -18,6 +18,6 @@ app.use(
 // ---------------------------------
 // (1) Subnet
 // ---------------------------------
-app.use("/exemple", exemple);
+app.use('/exemple', exemple);
 
 export default app;

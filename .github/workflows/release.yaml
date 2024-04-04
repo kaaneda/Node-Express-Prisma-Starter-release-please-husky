@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "yarn"
-          registry-url: "https://registry.npmjs.org"
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Run Release Please
         uses: google-github-actions/release-please-action@v3

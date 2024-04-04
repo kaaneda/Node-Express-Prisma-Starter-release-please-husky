@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import app from "./app";
+import { PrismaClient } from '@prisma/client';
+import app from './app';
 
 const port = 3010;
 let databaseUrl: string | undefined;
@@ -20,7 +20,7 @@ export const prisma = new PrismaClient({
 const databaseConnect = async () => {
   try {
     await prisma.$connect();
-    console.log("Database connected");
+    console.log('Database connected');
   } catch (error) {
     throw new Error(error as string);
   }
@@ -33,7 +33,7 @@ const initServer = async () => {
       console.log(`Server running on port ${port}`);
     });
   } catch (error) {
-    console.log("Could not connect to database", error);
+    console.log('Could not connect to database', error);
   }
 };
 
